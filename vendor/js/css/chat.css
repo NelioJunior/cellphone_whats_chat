@@ -1,0 +1,95 @@
+
+.chatbot {
+    right:25px;
+    bottom:25px;
+    position: absolute;
+    background-image: url('./img/fundo.jpg');
+    background-size: cover; 
+    background-position: center; 
+    height:86vh;
+    width: 24vw;
+    border-top-right-radius: 45px;
+    border-top-left-radius: 45px;
+    border-bottom-right-radius: 45px;
+    border-bottom-left-radius: 45px;
+    z-index: 3;
+}
+
+.chatbox {
+    position: absolute;
+    max-height: 60%;
+    width:98%;
+    overflow-y: auto; 
+    z-index: 7;
+}
+
+.chatbox::-webkit-scrollbar {
+    display: none;
+}
+
+.chatbot header{
+    padding-top:55px;
+    padding-right: 15px;
+    width: 90%px;
+    z-index: 3;
+}
+
+.smartphone {
+    position: absolute;
+    height:170px;			
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+}		
+
+.chat-input {
+    margin-bottom: 15%;
+    margin-left: 9%;
+    max-width:82%;
+    z-index:8;
+}     
+
+.icon-custom-size {
+    font-size: 28px; 
+}
+
+.chat-avatar{
+    margin-top:-10px; 
+    margin-left: 30px;
+    width:50px;
+    height:50px;
+}
+
+.thinking-image {
+    padding-top:10px;
+    width:215px;
+    height:200px;
+}
+
+.chat.outgoing {
+    float: right;
+    width: 90%;
+}
+
+.chat.outgoing p {			
+    color: black;
+    max-width: 250px;
+    background-color: #E1FFC7;
+    z-index: 3;
+    margin-right: 10px;			
+}
+
+.chat.incoming {
+    float: left;  
+    width: 90%;
+}   
+
+.chat.incoming p {			
+    color: black;
+    max-width: 250px;					
+    background-color: #fff;
+    z-index: 3;
+    margin-left: 10px;
+}
