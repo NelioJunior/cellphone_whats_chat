@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 var imagem = document.querySelector('.chat-avatar');
 
                 if (imagem) {
-                    imagem.src = '/img/' + avatar + '.png';
+                    imagem.src = './img/' + avatar + '.png';
                 }
             }
         })
