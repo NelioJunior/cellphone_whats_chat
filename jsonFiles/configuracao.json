@@ -1,1 +1,37 @@
-{"id_empresa":1,"nomeEmpresa":"Nell - Espaço de Saúde, Beleza e Bem Estar","telefone":"(11) 4292-3746","responsavel":"Natasha Valencia Mello ","adesao":"setembro 2018","nomeUsuario":"nell","endereco":"Estrada dos tijolos dourados,4321 - Suzano - São Paulo","cep":"08830000","email":"atendimento@neiltek.com","cnpj":"10.090.807/0605-04","instagram":"","nomeBot":"Angel","avatar":"redHair","horario":{"abre":"09:00","fecha":"19:00"},"atenderNaoCadastrados":true,"modalidade":"mensal","diaRemuneracao1":"01","percentagemRemuneracao1":"100","diaRemuneracao2":"00","percentagemRemuneracao2":"50","percentagemRemuneracaoGeral":"65","semana":{"domingo":false,"segunda":true,"terca":true,"quarta":true,"quinta":true,"sexta":true,"sabado":true,"feriado":true},"ativo":1}
+{
+    "id_empresa": 1,
+    "nomeEmpresa": "Nell - Espaço de Saúde, Beleza e Bem Estar",
+    "telefone": "(11) 4292-3746",
+    "responsavel": "Natasha Valencia Mello ",
+    "adesao": "setembro 2018",
+    "nomeUsuario": "nell",
+    "endereco": "Estrada dos tijolos dourados,4321 - Suzano - São Paulo",
+    "cep": "08830000",
+    "email": "atendimento@neiltek.com",
+    "cnpj": "10.090.807/0605-04",
+    "instagram": "",
+    "nomeBot": "Angel",
+    "avatar": "redHair",
+    "horario": {
+        "abre": "09:00",
+        "fecha": "19:00"
+    },
+    "atenderNaoCadastrados": true,
+    "modalidade": "mensal",
+    "diaRemuneracao1": "01",
+    "percentagemRemuneracao1": "100",
+    "diaRemuneracao2": "00",
+    "percentagemRemuneracao2": "50",
+    "percentagemRemuneracaoGeral": "65",
+    "semana": {
+        "domingo": false,
+        "segunda": true,
+        "terca": true,
+        "quarta": true,
+        "quinta": true,
+        "sexta": true,
+        "sabado": true,
+        "feriado": true
+    },
+    "ativo": 1
+}

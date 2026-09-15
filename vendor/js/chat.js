@@ -36,15 +36,16 @@ function callCustomerServiceApi(chatbox) {
     const outgoing_lst = chatbox.querySelectorAll(".outgoing");
     const msg = outgoing_lst[outgoing_lst.length - 1]?.innerText;
 
-    userPhone = localStorage.getItem('userPhone');
-
-    // Se não existe no localStorage ou está vazio
+    // Pergunta o telefone apenas uma vez por sessão (enquanto a página não é recarregada).
+    // Este é um chat demonstrativo: não deve lembrar o usuário entre sessões,
+    // então intencionalmente não usamos localStorage aqui.
     if (!userPhone || userPhone === "") {
         userPhone = prompt("Digite seu número de telefone (ex: 11999887766):");
 
         // Se o usuário cancelou o prompt ou deixou vazio
         if (!userPhone || userPhone.trim() === "") {
             chatReplay("Número de telefone é obrigatório para continuar.");
+            userPhone = ""; // garante que será perguntado novamente na próxima tentativa
             return; // Sai da função sem fazer a requisição
         }
 
@@ -56,12 +57,14 @@ function callCustomerServiceApi(chatbox) {
             // Validação básica do número brasileiro (10 ou 11 dígitos)
             if (userPhone.length < 10 || userPhone.length > 11) {
                 chatReplay("Número de telefone inválido. Digite apenas os números (10 ou 11 dígitos).");
+                userPhone = "";
                 return;
             }
 
             // Validação adicional para celular brasileiro (deve começar com 9 se for 11 dígitos)
             if (userPhone.length === 11 && userPhone[2] !== '9') {
                 chatReplay("Número de celular inválido. O terceiro dígito deve ser 9.");
+                userPhone = "";
                 return;
             }
 
@@ -71,6 +74,7 @@ function callCustomerServiceApi(chatbox) {
             // Se já tem 55, valida se o restante está correto (12 ou 13 dígitos total)
             if (userPhone.length < 12 || userPhone.length > 13) {
                 chatReplay("Número de telefone inválido com código do país.");
+                userPhone = "";
                 return;
             }
 
@@ -78,25 +82,7 @@ function callCustomerServiceApi(chatbox) {
             const numeroSem55 = userPhone.substring(2);
             if (numeroSem55.length === 11 && numeroSem55[2] !== '9') {
                 chatReplay("Número de celular inválido. O terceiro dígito após o DDD deve ser 9.");
-                return;
-            }
-        }
-
-        // Salva no localStorage para próximas vezes
-        localStorage.setItem('userPhone', userPhone);
-    } else {
-        // Valida o número salvo também
-        userPhone = userPhone.replace(/\D/g, '');
-
-        // Se não tem código do país, adiciona
-        if (!userPhone.startsWith('55')) {
-            if (userPhone.length >= 10 && userPhone.length <= 11) {
-                userPhone = '55' + userPhone;
-                localStorage.setItem('userPhone', userPhone); // Atualiza no localStorage
-            } else {
-                // Se o número salvo é inválido, remove e pede novamente
-                localStorage.removeItem('userPhone');
-                chatReplay("Número salvo é inválido. Digite novamente.");
+                userPhone = "";
                 return;
             }
         }
@@ -208,10 +194,18 @@ sendChatBtn.addEventListener("click", handleChat);
 closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
 
 chatbotToggler.addEventListener("click", () => {
+    const isClosing = document.body.classList.contains("show-chatbot");
     document.body.classList.toggle("show-chatbot");
-    setTimeout(() => {
-         window.history.back();
-    }, 2000);
+
+    if (isClosing && chatbox.textContent.toLowerCase().includes("reserva confirmada")) {
+        const abrirGerenciador = confirm("Gostaria de abrir o Gerenciador de Salões para localizar o agendamento feito?");
+
+        if (abrirGerenciador) {
+            window.location.href = "https://nelltekbrazil.ddns.net/nellSite/ClientesParceirosNell/gestorPai_SalaoConsultorioMVC/view/listaagenda.php";
+        } else {
+            window.history.back();
+        }
+    }
 });
 
 document.addEventListener("DOMContentLoaded", function() {
