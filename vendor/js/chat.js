@@ -197,14 +197,21 @@ chatbotToggler.addEventListener("click", () => {
     const isClosing = document.body.classList.contains("show-chatbot");
     document.body.classList.toggle("show-chatbot");
 
-    if (isClosing && chatbox.textContent.toLowerCase().includes("reserva confirmada")) {
-        const abrirGerenciador = confirm("Gostaria de abrir o Gerenciador de Salões para localizar o agendamento feito?");
+    if (!isClosing) {
+        return; // Abrindo o chat: não faz nada além do toggle.
+    }
+
+    if (chatbox.textContent.toLowerCase().includes("reserva confirmada")) {
+        const abrirGerenciador = confirm("Gostaria de abrir o Gerenciador de Salões para localizar o agendamento feito?\nOS DADOS CADASTRADOS SERÃO EXCLUÍDOS NO PRAZO DE 24 HORAS!");
 
         if (abrirGerenciador) {
             window.location.href = "https://nelltekbrazil.ddns.net/nellSite/ClientesParceirosNell/gestorPai_SalaoConsultorioMVC/view/listaagenda.php";
         } else {
             window.history.back();
         }
+    } else {
+        // Fechamento comum, sem reserva confirmada: volta pra página chamadora, como sempre foi.
+        window.history.back();
     }
 });
 
